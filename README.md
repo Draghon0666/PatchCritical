@@ -5,7 +5,7 @@ Salut a tous, voici mon premier post sur github, pas ouf j'en suis certain mais 
 J'ai fait une classe qui permet de patch les critiques de minecraft qui augmente de 50% les dégats.
 
 
-Cela permettra de passer ce pourcentage a moins... (Exemple : 50% => 30%).
+Cela permettra de passer ce pourcentage a moins ou plus... (Exemple : 50% => 30%).
 
 
 > Voici un forum spigot qui m'a aider a faire ceci : https://www.spigotmc.org/threads/how-to-get-attack-damage-attributemodifier-from-an-itemstack-as-displayed-on-items-in-game.284455/
