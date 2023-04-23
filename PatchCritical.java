@@ -1,4 +1,3 @@
-package fr.zephyr.uhcapi.Listener;
 
 import com.google.common.collect.Multimap;
 import net.minecraft.server.v1_8_R3.*;
