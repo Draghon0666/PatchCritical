@@ -19,7 +19,7 @@ public class PatchCritical {
     }
     private double getAttackValue(Player p) {
         ItemStack i = p.getItemInHand();
-        double c = getAttackDamage(i); //Prendre les dégats de base de l'épée
+        double c = i == null ? 1.0 : getAttackDamage(i); //Prendre les dégats de base de l'épée
         //On va ajouter des dégats si l'item a sharpness
         if (i.getEnchantments() == null) return c;//pas d'enchantement donc pas de sharpness
         if (!i.containsEnchantment(Enchantment.DAMAGE_ALL)) return c;//si pas sharpness on retire
