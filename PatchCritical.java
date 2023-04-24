@@ -19,9 +19,14 @@ public class PatchCritical {
     }
     private double getAttackValue(Player p) {
         ItemStack i = p.getItemInHand();
-        double c = i == null ? getAttackDamage(i) : 1.0; //Prendre les dégats de base de l'épée
+        double c = 1.0;
+        if(i != null) c = getAttackDamage(i);//Prendre les dégats de base de l'épée
+        if(p.hasPotionEffect(PotionEffectType.WEAKNESS))
+            c -= 0.5D;//Si il a weakness on ajoute 0.5 coeurs. On passe la weakness en priorité
+        if(p.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE))//Si il a force on fait * 2.3 pour ses dégats
+           c *= 2.3D;
         //On va ajouter des dégats si l'item a sharpness
-          if(i == null) return c;
+        if(i == null) return c;
         if (i.getEnchantments() == null) return c;//pas d'enchantement donc pas de sharpness
         if (!i.containsEnchantment(Enchantment.DAMAGE_ALL)) return c;//si pas sharpness on retire
         c += i.getEnchantmentLevel(Enchantment.DAMAGE_ALL) * 1.25;//on ajoute la sharpness
@@ -33,7 +38,8 @@ public class PatchCritical {
             return false;//Le damager ne peut pas être un joueur donc pas de critical
         Player p = (Player) e.getDamager();
         double a = getAttackValue(p);
-        return e.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE) != a;//Si les dégats sont pas pareil on return true
+        DecimalFormat df = new DecimalFormat("0.00");//Les dégats de la force diffère a 0.0000001 environ.
+        return !df.format(e.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE)).equals(df.format(a));//Si les dégats sont pas pareil on return true
     }
 
     private void patchCritical(int percent) {
