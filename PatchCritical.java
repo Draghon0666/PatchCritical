@@ -56,6 +56,7 @@ public class PatchCritical {
         double attackDamage = 1.0;
         UUID uuid = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
         net.minecraft.server.v1_8_R3.ItemStack craftItemStack = CraftItemStack.asNMSCopy(itemStack);
+        if(craftItemStack.getItem() == null) return attackDamage;
         Item item = craftItemStack.getItem();
         if (!(item instanceof ItemSword) && !(item instanceof ItemTool) && !(item instanceof ItemHoe)) return attackDamage;
             Multimap<String, AttributeModifier> map = item.i();
