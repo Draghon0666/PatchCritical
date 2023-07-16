@@ -26,8 +26,7 @@ public class PatchCritical {
         int d = p.getActivePotionEffects().stream().filter(potionEffect -> potionEffect.getType().equals(PotionEffectType.INCREASE_DAMAGE)).map(PotionEffect::getAmplifier).findFirst().orElse(-1) + 1;
         int dd = p.getActivePotionEffects().stream().filter(potionEffect -> potionEffect.getType().equals(PotionEffectType.WEAKNESS)).map(PotionEffect::getAmplifier).findFirst().orElse(-1) + 1;
         c -= 0.5D * dd;//Si il a weakness on ajoute 0.5 coeurs. On passe la weakness en priorité
-        if(p.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE))//Si il a force on fait * 2.3 pour ses dégats
-            c *= 1.0D + d * 1.3;
+        c *= 1.0D + d * 1.3;//Si il a force on fait * 2.3 pour ses dégats
         //On va ajouter des dégats si l'item a sharpness
         if(i == null) return c;
         if (i.getEnchantments() == null) return c;//pas d'enchantement donc pas de sharpness
